@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const BookingModal = ({ treatmentsType,setTreatmentsType ,selectedDate}) => {
-  const {name, slots} = treatmentsType;
+  const {name:treatmentName, slots} = treatmentsType;
   const date = format(selectedDate, 'PP')  //treatment is appointmentOption different name
   const {user} = useContext(AuthContext);
   console.log(user)
@@ -19,7 +19,7 @@ const BookingModal = ({ treatmentsType,setTreatmentsType ,selectedDate}) => {
     // [3, 5, 5].map((value, i) => console.log(value))
     const booking = {
       appointmentDate: date,
-      treatment: name,
+      treatment: treatmentName,
       patient: name,
       slot,
       email,
@@ -37,7 +37,7 @@ const BookingModal = ({ treatmentsType,setTreatmentsType ,selectedDate}) => {
        <div className="modal">
         <div className="modal-box relative text-primary">
           <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 className="text-lg text-slate-600 font-bold">{name}</h3>
+          <h3 className="text-lg text-slate-600 font-bold">{treatmentName}</h3>
 
            <form onSubmit={handleBooking} className="grid gird-cols-1 gap-3 mt-5">
               <input type="text" disabled value={date} className="input w-full input-bordered"/>
